@@ -54,7 +54,7 @@ btn.addEventListener("click", (e) => {
                     profilePic: Picurl  
                 });
                 console.log("Document written with ID: ", docRef.id);
-            // window.location = "login.html"
+                window.location = "login.html"
 
                 
             } catch (e) {
