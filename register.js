@@ -7,7 +7,7 @@ import { auth, db } from "./config.js";
 const email = document.querySelector("#email");
 const text = document.querySelector("#text");
 const password = document.querySelector("#password");
-const btn = document.querySelector("#btn");
+const btn = document.querySelector(".btn");
 
 let Picurl = "";  
 
