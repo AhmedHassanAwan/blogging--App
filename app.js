@@ -6,7 +6,38 @@ import { collection, getDocs ,query, where }from "https://www.gstatic.com/fireba
 
 import { auth , db} from "./config.js";
 
-
+const blogs = [
+    {
+      title: "The Power of Storytelling in Blogging",
+      description: "Discover how storytelling can engage readers, make content memorable, and boost your blog’s impact.",
+      image: "https://contentwriters.com/blog/wp-content/uploads/2021/10/The-Power-of-Storytelling-in-Content-Marketing.png"
+    },
+    {
+      title: "10 Tips for Writing Engaging Blog Posts",
+      description: "Learn the secrets of crafting compelling blog posts that keep readers hooked and coming back for more.",
+      image: "https://i.ytimg.com/vi/go4wo4WenQQ/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCKWqH5bhb-0EzSJymOE8BNWXbE-A"
+    },
+    {
+      title: "Why Blogging is Essential for Your Business",
+      description: "Blogging helps build brand authority, improve SEO, and connect with your audience in a meaningful way.",
+      image: "https://digitalsolutions.com.pk/wp-content/uploads/2022/12/Blogging-for-Your-Business.jpg"
+    },
+    {
+      title: "Mastering SEO: A Blogger’s Guide",
+      description: "SEO can make or break a blog. Learn how to optimize your posts for search engines and attract more visitors.",
+      image: "https://media.licdn.com/dms/image/v2/C4E12AQEL0_JQa2N2lg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1607599106278?e=2147483647&v=beta&t=iH0kj8lv4AROMB4T0PO0oll7pX4xzAHbscAZcWnojww"
+    },
+      {
+        title: "Top 10 Programming Languages in 2023",
+        description: "Discover the most popular programming languages this year and why they are dominating the tech world.",
+        image: "https://motivitylabs.com/wp-content/uploads/2022/12/Top-10-Programming-Language-Trends-for-Developers-to-Follow-in-2023.jpeg"
+      },
+      {
+        title: "Getting Started with Web Development",
+        description: "A beginner's guide to web development, covering HTML, CSS, JavaScript,& more",
+        image: "https://www.binpress.com/wp-content/uploads/2019/08/starting-web-development-business.jpg"
+      },
+  ];
 
 
 const profilename = document.querySelector("#user-profile-name");
@@ -15,6 +46,23 @@ const loginBtn = document.querySelector('#login-btn')
 const loginUser = document.querySelector('#login-user')
 const logoutbtn = document.querySelector("#logout-btn")
 const div = document.querySelector("#div");
+const blogContainer = document.getElementById("blog-container");
+
+
+function renderBlogs() {
+    blogContainer.innerHTML = "";
+    blogs.forEach((blog) => {
+      blogContainer.innerHTML += `
+        <div class="card shadow-lg border-0 rounded-4 overflow-hidden" style="width: 22rem;">
+          <img src="${blog.image}" class="card-img-top" alt="${blog.title}">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">${blog.title}</h5>
+            <p class="card-text text-muted">${blog.description}</p>
+          </div>
+        </div>
+      `;
+    });
+  }
 
 
 
@@ -38,6 +86,7 @@ logoutbtn.addEventListener("click",()=>{
             console.log(uid);
             
            let users = await data()
+           renderBlogs();
            datarender()
 
             profileimg.src = users.profilePic
@@ -70,30 +119,6 @@ logoutbtn.addEventListener("click",()=>{
     }
 
 
-//      async function datarender() {
-//             const arr = []
-//             const querySnapshot = await getDocs(collection(db, "blog"));
-//             querySnapshot.forEach((doc) => {
-//                 console.log(doc.data());
-                
-//             //   console.log(`${doc.id} => ${doc.data()}`);
-//             arr.push(doc.data())
-//             });
-//             console.log(arr);
-//              div.innerHTML = ""
-//             arr.map((items)=>{
-//                 console.log(items);
-//                 div.innerHTML += `
-//                 <div class="card" style="width: 18rem;">
-//       <img src="${items.iamge}" class="card-img-top" alt="...">
-//       <div class="card-body">
-//         <h5 class="card-title">${items.text}</h5>
-//         <p class="card-text">${items.uid}</p>
-//         <a href="#" class="btn btn-primary">Go somewhere</a>
-//       </div>
-//     </div>`
-// })
-// };
 
 
 
@@ -109,32 +134,19 @@ async function datarender() {
     div.innerHTML = ""; 
   
     arr.map((items, index) => {
-//       div.innerHTML +=`
-// //       <div class="card mb-3" style="max-width: 540px; class="card">
-// //   <div class="row g-0">
-// //     <div class="col-md-4">
-// //       <img src="${items.iamge}" class="img-fluid rounded-start" alt="...">
-// //     </div>
-// //     <div class="col-md-8">
-// //       <div class="card-body">
-// //         <h5 class="card-title">${items.text}</h5>
-// //         <p class="card-text">${items.description}</p>
-// //         <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-// //       </div>
-// //     </div>
-// //   </div>
-// // </div>`
+        
+      
+
       div.innerHTML += `
-        <div class="card" style="animation-delay: ${index * 0.1}s;">
-          <img src="${items.iamge}" class="card-img-top" alt="${items.text}">
-          <div class="card-body">
-            <h5 class="card-title">${items.text}</h5>
-            <p class="card-text">${items.uid}</p>
-            <a href="#" class="btn">Read More</a>
-          </div>
-        </div>`;
+      <div class="card shadow-lg border-0 rounded-4 overflow-hidden" style="width: 22rem;">
+        <img src="${items.iamge}" class="card-img-top" alt="${items.text}">
+        <div class="card-body">
+           <h5 class="card-title fw-bold">${items.text}</h5>
+    <p class="card-text text-muted">${items.description}</p>
+        </div>
+      </div>`
     });
   }
   
-  // Call the function to render data
+
   datarender();

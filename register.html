@@ -1,4 +1,4 @@
- 
+<!--  
  <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,4 +80,46 @@
 </body>
 </html>
 
+ -->
+
+
+
+ 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="./styles/register.css">
+</head>
+<body>
+    <div class="container">
+        <div class="register-container">
+            <h1>Register App </h1>
+            <form>
+                
+                <input type="text" class="form-control" placeholder="Enter your name" id="text"><br>
+                <input type="email" class="form-control" placeholder="Enter Email" id="email"><br>
+                <input type="password" class="form-control" placeholder="Enter password" id="password"><br>
+                <button type="submit" class="btn btn-custom w-100">Register Now</button>
+            </form>
+            <a href="login.html" class="login-link">Already have an account? Login!</a>
+            <button id="upload_widget" class="upload-btn">Upload Profile Image</button>
+        </div>
+
+    <div class="form-container register">
+            <i class="fas fa-user-plus fa-3x"></i>
+            <h2>Hello, Friend!</h2>
+            <p>Enter your personal details and start your journey with us.</p>
+            <button id="show-login">Sign Up</button>
+        </div> 
+    </div>
+
+    <script type="module" src="register.js"></script>
+    <script src="https://upload-widget.cloudinary.com/latest/global/all.js" type="text/javascript"></script>
+</body>
+</html>
 

@@ -4,8 +4,10 @@ import { collection, addDoc , getDocs , query, where  } from "https://www.gstati
 import { onAuthStateChanged   } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
 import { auth ,  db } from "./config.js";
 
-const btn = document.querySelector("#btn");
+const btn = document.querySelector(".publish-btn");
 const text = document.querySelector("#text");
+const description = document.querySelector("#description")
+
 // const div = document.querySelector("#div");
 
 
@@ -58,6 +60,7 @@ btn.addEventListener("click",async(e)=>{
     try {
         const docRef = await addDoc(collection(db, "blog"), {
             text : text.value,
+            description : description.value,
             uid : auth.currentUser.uid,
             iamge : Picurl
         });
@@ -93,14 +96,22 @@ async function datarender() {
     div.innerHTML = "";
     arr.map((items, index) => {
       div.innerHTML += `
-        <div class="card" style="animation-delay: ${index * 0.1}s;">
-          <img src="${items.iamge}" class="card-img-top" alt="${items.text}">
-          <div class="card-body">
-            <h5 class="card-title">${items.text}</h5>
-            <p class="card-text">${items.uid}</p>
-            <a href="#" class="btn">Read More</a>
-          </div>
-        </div>`;
+        <div class="card shadow-lg border-0 rounded-4 overflow-hidden" style="width: 22rem;">
+  <img src="${items.iamge}" class="card-img-top" alt="${items.text}">
+  <div class="card-body">
+    <h5 class="card-title fw-bold">${items.text}</h5>
+    <p class="card-text text-muted">${items.description}</p>
+  </div>
+</div>
+      
+      `;
+      // <div class="card" style="animation-delay: ${index * 0.1}s;">
+      //     <img src="${items.iamge}" class="card-img-top" alt="">
+      //     <div class="card-body">
+      //       <h5 class="card-title">${items.text}</h5>
+      //       <p class="card-text">${items.description}</p>
+      //     </div>
+      //   </div>
     });
   }
   
